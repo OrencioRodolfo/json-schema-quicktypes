@@ -4,12 +4,8 @@
   "main": "index.js",
   "scripts": {
     "gen:schema": "quicktype src/*.json -l schema -o schema.json",
-    "docs": "node docs.js",
-    "gen:ts": "make gen_types",
-    "gen:kotlin": "quicktype -s schema schemas/events.json --lang kotlin -o src/contract/kotlin/Models.kt",
-    "gen:java": "quicktype -s schema schemas/events.json --lang java --just-types -o src/contract/java/Models.java",
-    "gen:swift": "quicktype -s schema schemas/events.json --lang swift --just-types -o src/contract/swift/Models.swift",
-    "gen:all": "npm run gen:ts & npm run gen:java & npm run gen:kotlin & npm run gen:swift"
+    "gen:docs": "node docs.js",
+    "gen:types": "make gen_types"
   },
   "author": "",
   "license": "ISC",

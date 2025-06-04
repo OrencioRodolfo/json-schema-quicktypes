@@ -2,8 +2,8 @@ const JsonSchemaStaticDocs = require("json-schema-static-docs");
 
 (async () => {
   let jsonSchemaStaticDocs = new JsonSchemaStaticDocs({
-    inputPath: "schemas",
-    outputPath: "docs",
+    inputPath: "api-spec",
+    outputPath: "api-spec",
     ajvOptions: {
       allowUnionTypes: true,
     },
