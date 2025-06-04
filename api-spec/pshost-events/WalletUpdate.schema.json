@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "walletupdate.schema.json",
+  "title": "Wallet Update Event",
+  "description": "Triggered when the wallet balance updates",
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "@@sports/wallet_update"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "amount": { "type": "number" },
+        "currency": { "type": "string" }
+      },
+      "required": ["amount", "currency"]
+    }
+  },
+  "required": ["type", "payload"],
+  "additionalProperties": false
+}

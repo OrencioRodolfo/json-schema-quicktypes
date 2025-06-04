@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "cashout.schema.json",
+  "title": "Bet Cashout Event",
+  "description": "Triggered when a user cashes out a bet in My Bets",
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "@@sports/bet_cashout"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "betDelay": { "type": "number" },
+        "betId": { "type": "string" },
+        "cashOutToken": { "type": "string" },
+        "quote": { "type": "number" },
+        "cashedOutQuote": { "type": "number" }
+      },
+      "required": ["betId", "cashedOutQuote"]
+    }
+  },
+  "required": ["type", "payload"],
+  "additionalProperties": false
+}
+
+

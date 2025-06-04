@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "gen:schema": "quicktype src/data-sample.json -l schema -o schema.json",
+    "gen:schema": "quicktype src/*.json -l schema -o schema.json",
     "docs": "node docs.js",
-    "gen:ts": "quicktype -s schema schemas/product.schema.json --just-types -o src/contract/nodejs/Product.ts",
+    "gen:ts": "make gen_types",
     "gen:kotlin": "quicktype -s schema schemas/events.json --lang kotlin -o src/contract/kotlin/Models.kt",
     "gen:java": "quicktype -s schema schemas/events.json --lang java --just-types -o src/contract/java/Models.java",
     "gen:swift": "quicktype -s schema schemas/events.json --lang swift --just-types -o src/contract/swift/Models.swift",
