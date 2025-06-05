@@ -6,7 +6,7 @@
 
 <table>
 <tbody>
-<tr><th>$id</th><td>cashout.schema.json</td></tr>
+<tr><th>$id</th><td>BetCashedOut.schema.json</td></tr>
 <tr><th>$schema</th><td>http://json-schema.org/draft-07/schema#</td></tr>
 </tbody>
 </table>
@@ -155,7 +155,7 @@
 ```
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "cashout.schema.json",
+    "$id": "BetCashedOut.schema.json",
     "title": "Bet Cashout Event",
     "description": "Triggered when a user cashes out a bet in My Bets",
     "type": "object",

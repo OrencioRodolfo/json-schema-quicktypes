@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "cashout.schema.json",
+  "$id": "BetCashedOut.schema.json",
   "title": "Bet Cashout Event",
   "description": "Triggered when a user cashes out a bet in My Bets",
   "type": "object",

@@ -1,12 +1,16 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "betplacement.schema.json",
+  "$id": "BetPlaced.schema.json",
   "title": "Bet Placement Event",
-  "description": "Triggered when a user places a bet",
+  "description": "Triggered when a user places a bet successfuly",
   "type": "object",
   "properties": {
+    "kind": {
+      "$ref": "../envelope/envelope.schema.json#/$defs/kind"
+    },
     "type": {
-      "const": "@@sports/bet_placement"
+      "const": "@@sports/bet_placed",
+      "description": "Defines the UID for this event"
     },
     "payload": {
       "type": "object",
@@ -20,6 +24,6 @@
       "required": ["betId", "betReceiptId", "totalStake", "totalPotentialWin", "betPlacedTime"]
     }
   },
-  "required": ["type", "payload"],
+  "required": ["type", "kind", "payload"],
   "additionalProperties": false
 }
