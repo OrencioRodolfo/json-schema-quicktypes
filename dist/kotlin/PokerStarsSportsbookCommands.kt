@@ -1,6 +1,8 @@
 // To parse the JSON, install Klaxon and do:
 //
-//   val betCashoutEvent = BetCashoutEvent.fromJson(jsonString)
+//   val sBKCommandsDepositCommand = SBKCommandsDepositCommand.fromJson(jsonString)
+//   val sBKCommandsLoginCommand = SBKCommandsLoginCommand.fromJson(jsonString)
+//   val sBKCommandsNavigateCommand = SBKCommandsNavigateCommand.fromJson(jsonString)
 
 package quicktype
 
@@ -15,28 +17,35 @@ private fun <T> Klaxon.convert(k: kotlin.reflect.KClass<*>, fromJson: (JsonValue
     })
 
 private val klaxon = Klaxon()
-    .convert(Kind::class, { Kind.fromValue(it.string!!) }, { "\"${it.value}\"" })
-    .convert(Type::class, { Type.fromValue(it.string!!) }, { "\"${it.value}\"" })
+    .convert(Kind::class,                           { Kind.fromValue(it.string!!) },                           { "\"${it.value}\"" })
+    .convert(Origin::class,                         { Origin.fromValue(it.string!!) },                         { "\"${it.value}\"" })
+    .convert(SBKCommandsDepositCommandType::class,  { SBKCommandsDepositCommandType.fromValue(it.string!!) },  { "\"${it.value}\"" })
+    .convert(SBKCommandsLoginCommandType::class,    { SBKCommandsLoginCommandType.fromValue(it.string!!) },    { "\"${it.value}\"" })
+    .convert(Target::class,                         { Target.fromValue(it.string!!) },                         { "\"${it.value}\"" })
+    .convert(SBKCommandsNavigateCommandType::class, { SBKCommandsNavigateCommandType.fromValue(it.string!!) }, { "\"${it.value}\"" })
 
 /**
  * Triggered when a user cashes out a bet in My Bets
  */
-data class BetCashoutEvent (
-    /**
-     * Identifies this message as a Command
-     */
-    val kind: Kind? = null,
+data class SBKCommandsDepositCommand (
+    val kind: Kind,
+    val meta: SBKCommandsDepositCommandMeta,
 
-    val payload: Payload,
-    val type: Type
+    /**
+     * Defines the UID for this event
+     */
+    val type: SBKCommandsDepositCommandType
 ) {
     public fun toJson() = klaxon.toJsonString(this)
 
     companion object {
-        public fun fromJson(json: String) = klaxon.parse<BetCashoutEvent>(json)
+        public fun fromJson(json: String) = klaxon.parse<SBKCommandsDepositCommand>(json)
     }
 }
 
+/**
+ * Identifies the message as being a Command
+ */
 enum class Kind(val value: String) {
     Command("command");
 
@@ -48,24 +57,110 @@ enum class Kind(val value: String) {
     }
 }
 
-data class Payload (
-    val betDelay: Double? = null,
-
-    @Json(name = "betId")
-    val betID: String,
-
-    val cashedOutQuote: Double,
-    val cashOutToken: String? = null,
-    val quote: Double? = null
+data class SBKCommandsDepositCommandMeta (
+    val origin: Origin? = null
 )
 
-enum class Type(val value: String) {
-    SportsbookBetCashout("@@sportsbook/bet_cashout");
+/**
+ * Identifies 'Sportsbook' as the origin
+ */
+enum class Origin(val value: String) {
+    Sportsbook("sportsbook");
 
     companion object {
-        public fun fromValue(value: String): Type = when (value) {
-            "@@sportsbook/bet_cashout" -> SportsbookBetCashout
-            else                       -> throw IllegalArgumentException()
+        public fun fromValue(value: String): Origin = when (value) {
+            "sportsbook" -> Sportsbook
+            else         -> throw IllegalArgumentException()
+        }
+    }
+}
+
+enum class SBKCommandsDepositCommandType(val value: String) {
+    SportsbookDeposit("@@sportsbook/deposit");
+
+    companion object {
+        public fun fromValue(value: String): SBKCommandsDepositCommandType = when (value) {
+            "@@sportsbook/deposit" -> SportsbookDeposit
+            else                   -> throw IllegalArgumentException()
+        }
+    }
+}
+
+/**
+ * Triggered when a user cashes out a bet in My Bets
+ */
+data class SBKCommandsLoginCommand (
+    val kind: Kind,
+    val meta: SBKCommandsLoginCommandMeta,
+
+    /**
+     * Defines the UID for this event
+     */
+    val type: SBKCommandsLoginCommandType
+) {
+    public fun toJson() = klaxon.toJsonString(this)
+
+    companion object {
+        public fun fromJson(json: String) = klaxon.parse<SBKCommandsLoginCommand>(json)
+    }
+}
+
+data class SBKCommandsLoginCommandMeta (
+    val origin: Origin? = null
+)
+
+enum class SBKCommandsLoginCommandType(val value: String) {
+    SportsbookLogin("@@sportsbook/login");
+
+    companion object {
+        public fun fromValue(value: String): SBKCommandsLoginCommandType = when (value) {
+            "@@sportsbook/login" -> SportsbookLogin
+            else                 -> throw IllegalArgumentException()
+        }
+    }
+}
+
+/**
+ * Signal to instruct the subscriber (PokerStart host app) to perform a navigation to a
+ * given URL
+ */
+data class SBKCommandsNavigateCommand (
+    val kind: Kind,
+    val payload: Payload,
+    val type: SBKCommandsNavigateCommandType
+) {
+    public fun toJson() = klaxon.toJsonString(this)
+
+    companion object {
+        public fun fromJson(json: String) = klaxon.parse<SBKCommandsNavigateCommand>(json)
+    }
+}
+
+data class Payload (
+    val target: Target,
+    val url: String
+)
+
+enum class Target(val value: String) {
+    External("external"),
+    Internal("internal");
+
+    companion object {
+        public fun fromValue(value: String): Target = when (value) {
+            "external" -> External
+            "internal" -> Internal
+            else       -> throw IllegalArgumentException()
+        }
+    }
+}
+
+enum class SBKCommandsNavigateCommandType(val value: String) {
+    SportsbookNavigate("@@sportsbook/navigate");
+
+    companion object {
+        public fun fromValue(value: String): SBKCommandsNavigateCommandType = when (value) {
+            "@@sportsbook/navigate" -> SportsbookNavigate
+            else                    -> throw IllegalArgumentException()
         }
     }
 }
