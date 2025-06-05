@@ -1,7 +1,7 @@
 // To parse the JSON, install Klaxon and do:
 //
-//   val betPlacementEvent = BetPlacementEvent.fromJson(jsonString)
 //   val betCashoutEvent = BetCashoutEvent.fromJson(jsonString)
+//   val betPlacementEvent = BetPlacementEvent.fromJson(jsonString)
 
 package quicktype
 
@@ -16,51 +16,20 @@ private fun <T> Klaxon.convert(k: kotlin.reflect.KClass<*>, fromJson: (JsonValue
     })
 
 private val klaxon = Klaxon()
-    .convert(BetPlacementEventType::class, { BetPlacementEventType.fromValue(it.string!!) }, { "\"${it.value}\"" })
+    .convert(Kind::class,                  { Kind.fromValue(it.string!!) },                  { "\"${it.value}\"" })
     .convert(BetCashoutEventType::class,   { BetCashoutEventType.fromValue(it.string!!) },   { "\"${it.value}\"" })
-
-/**
- * Triggered when a user places a bet
- */
-data class BetPlacementEvent (
-    val payload: BetPlacementEventPayload,
-    val type: BetPlacementEventType
-) {
-    public fun toJson() = klaxon.toJsonString(this)
-
-    companion object {
-        public fun fromJson(json: String) = klaxon.parse<BetPlacementEvent>(json)
-    }
-}
-
-data class BetPlacementEventPayload (
-    @Json(name = "betId")
-    val betID: Double,
-
-    val betPlacedTime: String,
-
-    @Json(name = "betReceiptId")
-    val betReceiptID: String,
-
-    val totalPotentialWin: Double,
-    val totalStake: Double
-)
-
-enum class BetPlacementEventType(val value: String) {
-    SportsBetPlacement("@@sports/bet_placement");
-
-    companion object {
-        public fun fromValue(value: String): BetPlacementEventType = when (value) {
-            "@@sports/bet_placement" -> SportsBetPlacement
-            else                     -> throw IllegalArgumentException()
-        }
-    }
-}
+    .convert(Origin::class,                { Origin.fromValue(it.string!!) },                { "\"${it.value}\"" })
+    .convert(BetPlacementEventType::class, { BetPlacementEventType.fromValue(it.string!!) }, { "\"${it.value}\"" })
 
 /**
  * Triggered when a user cashes out a bet in My Bets
  */
 data class BetCashoutEvent (
+    /**
+     * Identifies this message as an Event
+     */
+    val kind: Kind? = null,
+
     val payload: BetCashoutEventPayload,
     val type: BetCashoutEventType
 ) {
@@ -68,6 +37,17 @@ data class BetCashoutEvent (
 
     companion object {
         public fun fromJson(json: String) = klaxon.parse<BetCashoutEvent>(json)
+    }
+}
+
+enum class Kind(val value: String) {
+    Event("event");
+
+    companion object {
+        public fun fromValue(value: String): Kind = when (value) {
+            "event" -> Event
+            else    -> throw IllegalArgumentException()
+        }
     }
 }
 
@@ -83,12 +63,75 @@ data class BetCashoutEventPayload (
 )
 
 enum class BetCashoutEventType(val value: String) {
-    SportsBetCashout("@@sports/bet_cashout");
+    SportsbookBetCashout("@@sportsbook/bet_cashout");
 
     companion object {
         public fun fromValue(value: String): BetCashoutEventType = when (value) {
-            "@@sports/bet_cashout" -> SportsBetCashout
-            else                   -> throw IllegalArgumentException()
+            "@@sportsbook/bet_cashout" -> SportsbookBetCashout
+            else                       -> throw IllegalArgumentException()
+        }
+    }
+}
+
+/**
+ * Triggered when a user places a bet successfuly
+ */
+data class BetPlacementEvent (
+    /**
+     * Identifies this message as an Event
+     */
+    val kind: Kind,
+
+    val meta: Meta? = null,
+    val payload: BetPlacementEventPayload,
+
+    /**
+     * Defines the UID for this event
+     */
+    val type: BetPlacementEventType
+) {
+    public fun toJson() = klaxon.toJsonString(this)
+
+    companion object {
+        public fun fromJson(json: String) = klaxon.parse<BetPlacementEvent>(json)
+    }
+}
+
+data class Meta (
+    val origin: Origin? = null
+)
+
+enum class Origin(val value: String) {
+    Sportsbook("sportsbook");
+
+    companion object {
+        public fun fromValue(value: String): Origin = when (value) {
+            "sportsbook" -> Sportsbook
+            else         -> throw IllegalArgumentException()
+        }
+    }
+}
+
+data class BetPlacementEventPayload (
+    @Json(name = "betId")
+    val betID: Double,
+
+    val betPlacedTime: String? = null,
+
+    @Json(name = "betReceiptId")
+    val betReceiptID: String,
+
+    val totalPotentialWin: Double? = null,
+    val totalStake: Double? = null
+)
+
+enum class BetPlacementEventType(val value: String) {
+    SportsbookBetPlaced("@@sportsbook/bet_placed");
+
+    companion object {
+        public fun fromValue(value: String): BetPlacementEventType = when (value) {
+            "@@sportsbook/bet_placed" -> SportsbookBetPlaced
+            else                      -> throw IllegalArgumentException()
         }
     }
 }

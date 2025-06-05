@@ -1,24 +1,24 @@
 package io.quicktype;
 
 public class Payload {
-    private double betID;
-    private String betPlacedTime;
-    private String betReceiptID;
-    private double totalPotentialWin;
-    private double totalStake;
+    private Double betDelay;
+    private String betID;
+    private double cashedOutQuote;
+    private String cashOutToken;
+    private Double quote;
 
-    public double getBetID() { return betID; }
-    public void setBetID(double value) { this.betID = value; }
+    public Double getBetDelay() { return betDelay; }
+    public void setBetDelay(Double value) { this.betDelay = value; }
 
-    public String getBetPlacedTime() { return betPlacedTime; }
-    public void setBetPlacedTime(String value) { this.betPlacedTime = value; }
+    public String getBetID() { return betID; }
+    public void setBetID(String value) { this.betID = value; }
 
-    public String getBetReceiptID() { return betReceiptID; }
-    public void setBetReceiptID(String value) { this.betReceiptID = value; }
+    public double getCashedOutQuote() { return cashedOutQuote; }
+    public void setCashedOutQuote(double value) { this.cashedOutQuote = value; }
 
-    public double getTotalPotentialWin() { return totalPotentialWin; }
-    public void setTotalPotentialWin(double value) { this.totalPotentialWin = value; }
+    public String getCashOutToken() { return cashOutToken; }
+    public void setCashOutToken(String value) { this.cashOutToken = value; }
 
-    public double getTotalStake() { return totalStake; }
-    public void setTotalStake(double value) { this.totalStake = value; }
+    public Double getQuote() { return quote; }
+    public void setQuote(Double value) { this.quote = value; }
 }

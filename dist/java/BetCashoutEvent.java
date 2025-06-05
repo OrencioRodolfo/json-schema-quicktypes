@@ -4,12 +4,19 @@ package io.quicktype;
  * Triggered when a user cashes out a bet in My Bets
  */
 public class BetCashoutEvent {
-    private BetCashoutEventPayload payload;
-    private BetCashoutEventType type;
+    private Kind kind;
+    private Payload payload;
+    private Type type;
 
-    public BetCashoutEventPayload getPayload() { return payload; }
-    public void setPayload(BetCashoutEventPayload value) { this.payload = value; }
+    /**
+     * Identifies this message as a Command
+     */
+    public Kind getKind() { return kind; }
+    public void setKind(Kind value) { this.kind = value; }
 
-    public BetCashoutEventType getType() { return type; }
-    public void setType(BetCashoutEventType value) { this.type = value; }
+    public Payload getPayload() { return payload; }
+    public void setPayload(Payload value) { this.payload = value; }
+
+    public Type getType() { return type; }
+    public void setType(Type value) { this.type = value; }
 }

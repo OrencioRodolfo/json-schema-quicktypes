@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "SBKCommandsDeposit.schema.json",
+  "title": "SBK Commands - Deposit Command",
+  "description": "Triggered when a user cashes out a bet in My Bets",
+  "type": "object",
+  "properties": {
+    "kind": {
+      "$ref": "../envelope/envelope.schema.json#/$defs/kind-command"
+    },
+    "type": {
+      "const": "@@sportsbook/deposit",
+      "description": "Defines the UID for this event"
+    },
+    "meta": {
+      "type": "object",
+      "properties": {
+        "origin": {
+          "$ref": "../envelope/envelope.schema.json#/$defs/origin-sportsbook"
+        }
+      }
+    }
+  },
+  "required": ["kind", "type", "meta"],
+  "additionalProperties": false,
+  "examples": [
+    {
+      "type": "@@sportsbook/deposit",
+      "kind": "command",
+      "meta": {
+        "origin": "sportsbook"
+      }
+    }
+  ]
+}

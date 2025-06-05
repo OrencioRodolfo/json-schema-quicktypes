@@ -2,25 +2,35 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "envelope/envelope.schema.json",
     "title": "Message Envelope",
-    "description": "Envelope for all messages being exchanged, whether they are Events or Commands and by who they get produced",
+    "description": "Envelope for all messages being exchanged, whether they are Events or Commands or produced by PokerStars host or Sportsbook embed apps",
     "type": "object",
     "$defs": {
-      "kind": {
+      "kind-event": {
         "type": "string",
-        "enum": ["event", "command"],
-        "description": "Defines whether the message is an event or a command",
-        "required": ["type"]
+        "const": "event",
+        "description": "Identifies the message as being an Event"
       },
-      "origin": {
+      "kind-command": {
         "type": "string",
-        "enum": ["sportsbook", "pokerstars"],
-        "description": "Identifies by who is the message being produced (either Sportsbook app or the PokerStars host app)",
-        "required": ["type"]
+        "const": "command",
+        "description": "Identifies the message as being a Command"
+      },
+      "origin-sportsbook": {
+        "type": "string",
+        "const": "sportsbook",
+        "description": "Identifies 'Sportsbook' as the origin"
+      },
+      "origin-pokerstars": {
+        "type": "string",
+        "const": "pokerstars",
+        "description": "Identifies 'PokerStars' as the origin"
       }
     },
     "properties": {
       "kind": {
-        "$ref": "#/$defs/kind"
+        "type": "string",
+        "enum": ["event", "command"],
+        "description": "Defines whether the message is an event or a command"
       },
       "type": {
         "type": "string",
@@ -33,12 +43,56 @@
         "type": "object",
         "properties": {
           "origin": {
-            "$ref": "#/$defs/origin"
+            "type": "string",
+            "enum": ["sportsbook", "pokerstars"],
+            "description": "Identifies by who is the message being produced (either Sportsbook app or the PokerStars host app)"
           }
         }
       }
     },
     "required": ["type", "kind", "payload", "meta"],
-    "additionalProperties": false
+    "additionalProperties": false,
+    "examples": [
+      {
+        "type": "@@sportsbook/bet_placed",
+        "kind": "event",
+        "payload": {
+          "betId": 2491229247,
+          "betReceiptId": "O/10952522/0003688",
+          "totalStake": 0.11,
+          "totalPotentialWin": 0.24,
+          "betPlacedTime": "2025-06-05T09:39:01.000Z"
+        },
+        "meta": {
+          "origin": "sportsbook"
+        }
+      },
+      {
+        "type": "@@pokerstars/wallet_updated",
+        "kind": "event",
+        "payload": {
+          "details": {
+            "amount": "number",
+            "availabletobet": "number",
+            "bonus": "number",
+            "bonuses": "number",
+            "deposits": "number",
+            "real": "number",
+            "winnings": "number"
+          },
+          "walletName": "MAIN"
+        },
+        "meta": {
+          "origin": "sportsbook"
+        }
+      },
+      {
+        "type": "@@sportsbook/login",
+        "kind": "command",
+        "meta": {
+          "origin": "sportsbook"
+        }
+      }
+    ]
   }
   

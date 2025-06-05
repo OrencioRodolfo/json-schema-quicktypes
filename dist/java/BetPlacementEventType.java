@@ -3,17 +3,17 @@ package io.quicktype;
 import java.io.IOException;
 
 public enum BetPlacementEventType {
-    SPORTS_BET_PLACEMENT;
+    SPORTSBOOK_BET_PLACED;
 
     public String toValue() {
         switch (this) {
-            case SPORTS_BET_PLACEMENT: return "@@sports/bet_placement";
+            case SPORTSBOOK_BET_PLACED: return "@@sportsbook/bet_placed";
         }
         return null;
     }
 
     public static BetPlacementEventType forValue(String value) throws IOException {
-        if (value.equals("@@sports/bet_placement")) return SPORTS_BET_PLACEMENT;
+        if (value.equals("@@sportsbook/bet_placed")) return SPORTSBOOK_BET_PLACED;
         throw new IOException("Cannot deserialize BetPlacementEventType");
     }
 }

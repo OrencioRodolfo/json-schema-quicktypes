@@ -1,12 +1,36 @@
 /**
  * Triggered when a user cashes out a bet in My Bets
  */
-export interface BetCashoutEvent {
-    payload: BetCashoutEventPayload;
-    type:    BetCashoutEventType;
+export interface SBKEventsBetCashedOutEvent {
+    kind:    Kind;
+    meta:    SBKEventsBetCashedOutEventMeta;
+    payload: SBKEventsBetCashedOutEventPayload;
+    /**
+     * Defines the UID for this event
+     */
+    type: SBKEventsBetCashedOutEventType;
 }
 
-export interface BetCashoutEventPayload {
+/**
+ * Identifies the message as being an Event
+ */
+export enum Kind {
+    Event = "event",
+}
+
+export interface SBKEventsBetCashedOutEventMeta {
+    origin?: Origin;
+    [property: string]: any;
+}
+
+/**
+ * Identifies 'Sportsbook' as the origin
+ */
+export enum Origin {
+    Sportsbook = "sportsbook",
+}
+
+export interface SBKEventsBetCashedOutEventPayload {
     betDelay?:      number;
     betId:          string;
     cashedOutQuote: number;
@@ -15,39 +39,37 @@ export interface BetCashoutEventPayload {
     [property: string]: any;
 }
 
-export enum BetCashoutEventType {
-    SportsBetCashout = "@@sports/bet_cashout",
+export enum SBKEventsBetCashedOutEventType {
+    SportsbookBetCashedOut = "@@sportsbook/bet_cashed_out",
 }
 
 /**
  * Triggered when a user places a bet successfuly
  */
-export interface BetPlacementEvent {
+export interface SBKEventsBetPlacedEvent {
     kind:    Kind;
-    payload: BetPlacementEventPayload;
+    meta:    SBKEventsBetPlacedEventMeta;
+    payload: SBKEventsBetPlacedEventPayload;
     /**
      * Defines the UID for this event
      */
-    type: BetPlacementEventType;
+    type: SBKEventsBetPlacedEventType;
 }
 
-/**
- * Defines whether the message is an event or a command
- */
-export enum Kind {
-    Command = "command",
-    Event = "event",
-}
-
-export interface BetPlacementEventPayload {
-    betId:             number;
-    betPlacedTime:     string;
-    betReceiptId:      string;
-    totalPotentialWin: number;
-    totalStake:        number;
+export interface SBKEventsBetPlacedEventMeta {
+    origin?: Origin;
     [property: string]: any;
 }
 
-export enum BetPlacementEventType {
-    SportsBetPlaced = "@@sports/bet_placed",
+export interface SBKEventsBetPlacedEventPayload {
+    betId:              number;
+    betPlacedTime?:     string;
+    betReceiptId:       string;
+    totalPotentialWin?: number;
+    totalStake?:        number;
+    [property: string]: any;
+}
+
+export enum SBKEventsBetPlacedEventType {
+    SportsbookBetPlaced = "@@sportsbook/bet_placed",
 }

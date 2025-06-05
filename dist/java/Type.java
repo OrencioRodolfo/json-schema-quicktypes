@@ -3,17 +3,17 @@ package io.quicktype;
 import java.io.IOException;
 
 public enum Type {
-    SPORTS_BET_PLACEMENT;
+    SPORTSBOOK_BET_CASHOUT;
 
     public String toValue() {
         switch (this) {
-            case SPORTS_BET_PLACEMENT: return "@@sports/bet_placement";
+            case SPORTSBOOK_BET_CASHOUT: return "@@sportsbook/bet_cashout";
         }
         return null;
     }
 
     public static Type forValue(String value) throws IOException {
-        if (value.equals("@@sports/bet_placement")) return SPORTS_BET_PLACEMENT;
+        if (value.equals("@@sportsbook/bet_cashout")) return SPORTSBOOK_BET_CASHOUT;
         throw new IOException("Cannot deserialize Type");
     }
 }

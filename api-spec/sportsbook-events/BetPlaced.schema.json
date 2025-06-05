@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "SBKEventsBetPlaced.schema.json",
+  "title": "SBK Events - Bet Placed Event",
+  "description": "Triggered when a user places a bet successfuly",
+  "type": "object",
+  "properties": {
+    "kind": {
+      "$ref": "../envelope/envelope.schema.json#/$defs/kind-event"
+    },
+    "type": {
+      "const": "@@sportsbook/bet_placed",
+      "description": "Defines the UID for this event"
+    },
+    "meta": {
+      "type": "object",
+      "properties": {
+        "origin": {
+          "$ref": "../envelope/envelope.schema.json#/$defs/origin-sportsbook"
+        }
+      }
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "betId": { "type": "number" },
+        "betReceiptId": { "type": "string" },
+        "totalStake": { "type": "number" },
+        "totalPotentialWin": { "type": "number" },
+        "betPlacedTime": { "type": "string" }
+      },
+      "required": ["betId", "betReceiptId"]
+    }
+  },
+  "required": ["kind", "type", "payload", "meta"],
+  "additionalProperties": false,
+  "examples": [
+    {
+      "type": "@@sportsbook/bet_placed",
+      "kind": "event",
+      "payload": {
+        "betId": 2491229247,
+        "betReceiptId": "O/10952522/0003688",
+        "totalStake": 0.11,
+        "totalPotentialWin": 0.24,
+        "betPlacedTime": "2025-06-05T09:39:01.000Z"
+      },
+      "meta": {
+        "origin": "sportsbook"
+      }
+    }
+  ]
+}
+
+

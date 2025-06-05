@@ -4,8 +4,8 @@ public class BetPlacementEventPayload {
     private double betID;
     private String betPlacedTime;
     private String betReceiptID;
-    private double totalPotentialWin;
-    private double totalStake;
+    private Double totalPotentialWin;
+    private Double totalStake;
 
     public double getBetID() { return betID; }
     public void setBetID(double value) { this.betID = value; }
@@ -16,9 +16,9 @@ public class BetPlacementEventPayload {
     public String getBetReceiptID() { return betReceiptID; }
     public void setBetReceiptID(String value) { this.betReceiptID = value; }
 
-    public double getTotalPotentialWin() { return totalPotentialWin; }
-    public void setTotalPotentialWin(double value) { this.totalPotentialWin = value; }
+    public Double getTotalPotentialWin() { return totalPotentialWin; }
+    public void setTotalPotentialWin(Double value) { this.totalPotentialWin = value; }
 
-    public double getTotalStake() { return totalStake; }
-    public void setTotalStake(double value) { this.totalStake = value; }
+    public Double getTotalStake() { return totalStake; }
+    public void setTotalStake(Double value) { this.totalStake = value; }
 }

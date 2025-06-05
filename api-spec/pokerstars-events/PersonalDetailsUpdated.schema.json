@@ -1,0 +1,80 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "PSEventsPersonalDetailsUpdated.schema.json",
+  "title": "PS Events - Perfornal Details Updated Event",
+  "description": "Triggered when user's personal details get changed in My Account",
+  "type": "object",
+  "properties": {
+    "kind": {
+      "$ref": "../envelope/envelope.schema.json#/$defs/kind-event"
+    },
+    "type": {
+      "const": "@@pokerstars/personal_details_updated",
+      "description": "Defines the UID for this event"
+    },
+    "meta": {
+      "type": "object",
+      "properties": {
+        "origin": {
+          "$ref": "../envelope/envelope.schema.json#/$defs/origin-pokerstars"
+        }
+      }
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "language": {
+          "type": "object",
+          "properties": {
+            "old": { "type": "string" },
+            "new": { "type": "string" }
+          }
+        },
+        "timezone": {
+          "type": "object",
+          "properties": {
+            "old": { "type": "string" },
+            "new": { "type": "string" }
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "required": ["kind", "type", "payload", "meta"],
+  "additionalProperties": false,
+  "examples": [
+    {
+      "type": "@@pokerstars/personal_details_updated",
+      "kind": "event",
+      "payload": {
+        "language": {
+          "old": "pt_BR",
+          "new": "en_GB"
+        }
+    
+      },
+      "meta": {
+        "origin": "pokerstars"
+      }
+    },
+    {
+      "type": "@@pokerstars/personal_details_updated",
+      "kind": "event",
+      "payload": {
+        "timezone": {
+          "old": "US/Hawaii",
+          "new": "Europe/London"
+        }
+    
+      },
+      "meta": {
+        "origin": "pokerstars"
+      }
+    }
+  ]
+}
+
+
+
+

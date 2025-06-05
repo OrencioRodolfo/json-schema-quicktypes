@@ -1,19 +1,41 @@
 
 
-# Bet Placement Event
+# SBK Events - Bet Placed Event
 
 <p>Triggered when a user places a bet successfuly</p>
 
 <table>
 <tbody>
-<tr><th>$id</th><td>BetPlaced.schema.json</td></tr>
+<tr><th>$id</th><td>SBKEventsBetPlaced.schema.json</td></tr>
 <tr><th>$schema</th><td>http://json-schema.org/draft-07/schema#</td></tr>
 </tbody>
 </table>
 
 ## Properties
 
-<table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#kind">kind</a></td><td>String</td></tr><tr><td colspan="2"><a href="#type">type</a></td><td>undefined=@@sports/bet_placed</td></tr><tr><td colspan="2"><a href="#payload">payload</a></td><td>Object</td></tr></tbody></table>
+<table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#kind">kind</a></td><td>String=event</td></tr><tr><td colspan="2"><a href="#type">type</a></td><td>undefined=@@sportsbook/bet_placed</td></tr><tr><td colspan="2"><a href="#meta">meta</a></td><td>Object</td></tr><tr><td colspan="2"><a href="#payload">payload</a></td><td>Object</td></tr></tbody></table>
+
+
+## Example
+
+
+
+```
+{
+    "type": "@@sportsbook/bet_placed",
+    "kind": "event",
+    "payload": {
+        "betId": 2491229247,
+        "betReceiptId": "O/10952522/0003688",
+        "totalStake": 0.11,
+        "totalPotentialWin": 0.24,
+        "betPlacedTime": "2025-06-05T09:39:01.000Z"
+    },
+    "meta": {
+        "origin": "sportsbook"
+    }
+}
+```
 
 
 
@@ -22,13 +44,13 @@
 
 ## kind
 
-  <p>Defined in <a href="../envelope/envelope.schema.html#kind">../envelope/envelope.schema.html#kind</a></p>
+  <p>Defined in <a href="../envelope/envelope.schema.html#kind-event">../envelope/envelope.schema.html#kind-event</a></p>
 
 <table class="jssd-property-table">
   <tbody>
     <tr>
       <th>Description</th>
-      <td colspan="2">Defines whether the message is an event or a command</td>
+      <td colspan="2">Identifies the message as being an Event</td>
     </tr>
     <tr><th>Type</th><td colspan="2">String</td></tr>
     <tr>
@@ -36,8 +58,8 @@
       <td colspan="2">Yes</td>
     </tr>
     <tr>
-      <th>Enum</th>
-      <td colspan="2"><ul><li>event</li><li>command</li></ul></td>
+      <th>Const</th>
+      <td colspan="2">event</td>
     </tr>
   </tbody>
 </table>
@@ -61,10 +83,54 @@
     </tr>
     <tr>
       <th>Const</th>
-      <td colspan="2">@@sports/bet_placed</td>
+      <td colspan="2">@@sportsbook/bet_placed</td>
     </tr>
   </tbody>
 </table>
+
+
+
+
+## meta
+
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr><th>Type</th><td colspan="2">Object</td></tr>
+    <tr>
+      <th>Required</th>
+      <td colspan="2">Yes</td>
+    </tr>
+    
+  </tbody>
+</table>
+
+### Properties
+  <table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#metaorigin">origin</a></td><td>String=sportsbook</td></tr></tbody></table>
+
+
+### meta.origin
+
+  <p>Defined in <a href="../envelope/envelope.schema.html#origin-sportsbook">../envelope/envelope.schema.html#origin-sportsbook</a></p>
+
+<table class="jssd-property-table">
+  <tbody>
+    <tr>
+      <th>Description</th>
+      <td colspan="2">Identifies &#x27;Sportsbook&#x27; as the origin</td>
+    </tr>
+    <tr><th>Type</th><td colspan="2">String</td></tr>
+    <tr>
+      <th>Required</th>
+      <td colspan="2">No</td>
+    </tr>
+    <tr>
+      <th>Const</th>
+      <td colspan="2">sportsbook</td>
+    </tr>
+  </tbody>
+</table>
+
 
 
 
@@ -129,7 +195,7 @@
     <tr><th>Type</th><td colspan="2">Number</td></tr>
     <tr>
       <th>Required</th>
-      <td colspan="2">Yes</td>
+      <td colspan="2">No</td>
     </tr>
     
   </tbody>
@@ -146,7 +212,7 @@
     <tr><th>Type</th><td colspan="2">Number</td></tr>
     <tr>
       <th>Required</th>
-      <td colspan="2">Yes</td>
+      <td colspan="2">No</td>
     </tr>
     
   </tbody>
@@ -163,7 +229,7 @@
     <tr><th>Type</th><td colspan="2">String</td></tr>
     <tr>
       <th>Required</th>
-      <td colspan="2">Yes</td>
+      <td colspan="2">No</td>
     </tr>
     
   </tbody>
@@ -184,17 +250,25 @@
 ```
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "BetPlaced.schema.json",
-    "title": "Bet Placement Event",
+    "$id": "SBKEventsBetPlaced.schema.json",
+    "title": "SBK Events - Bet Placed Event",
     "description": "Triggered when a user places a bet successfuly",
     "type": "object",
     "properties": {
         "kind": {
-            "$ref": "../envelope/envelope.schema.json#/$defs/kind"
+            "$ref": "../envelope/envelope.schema.json#/$defs/kind-event"
         },
         "type": {
-            "const": "@@sports/bet_placed",
+            "const": "@@sportsbook/bet_placed",
             "description": "Defines the UID for this event"
+        },
+        "meta": {
+            "type": "object",
+            "properties": {
+                "origin": {
+                    "$ref": "../envelope/envelope.schema.json#/$defs/origin-sportsbook"
+                }
+            }
         },
         "payload": {
             "type": "object",
@@ -217,19 +291,33 @@
             },
             "required": [
                 "betId",
-                "betReceiptId",
-                "totalStake",
-                "totalPotentialWin",
-                "betPlacedTime"
+                "betReceiptId"
             ]
         }
     },
     "required": [
-        "type",
         "kind",
-        "payload"
+        "type",
+        "payload",
+        "meta"
     ],
-    "additionalProperties": false
+    "additionalProperties": false,
+    "examples": [
+        {
+            "type": "@@sportsbook/bet_placed",
+            "kind": "event",
+            "payload": {
+                "betId": 2491229247,
+                "betReceiptId": "O/10952522/0003688",
+                "totalStake": 0.11,
+                "totalPotentialWin": 0.24,
+                "betPlacedTime": "2025-06-05T09:39:01.000Z"
+            },
+            "meta": {
+                "origin": "sportsbook"
+            }
+        }
+    ]
 }
 ```
 

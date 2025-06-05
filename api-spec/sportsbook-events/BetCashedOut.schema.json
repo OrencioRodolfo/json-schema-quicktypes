@@ -1,0 +1,54 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "SBKEventsBetCashedOut.schema.json",
+  "title": "SBK Events - Bet Cashed Out Event",
+  "description": "Triggered when a user cashes out a bet in My Bets",
+  "type": "object",
+  "properties": {
+    "kind": {
+      "$ref": "../envelope/envelope.schema.json#/$defs/kind-event"
+    },
+    "type": {
+      "const": "@@sportsbook/bet_cashed_out",
+      "description": "Defines the UID for this event"
+    },
+    "meta": {
+      "type": "object",
+      "properties": {
+        "origin": {
+          "$ref": "../envelope/envelope.schema.json#/$defs/origin-sportsbook"
+        }
+      }
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "betId": { "type": "string" },
+        "cashedOutQuote": { "type": "number" },
+        "betDelay": { "type": "number" },
+        "cashOutToken": { "type": "string" },
+        "quote": { "type": "number" }
+      },
+      "required": ["betId", "cashedOutQuote"]
+    }
+  },
+  "required": ["kind", "type", "payload", "meta"],
+  "additionalProperties": false,
+  "examples": [
+    {
+      "type": "@@sportsbook/bet_cashed_out",
+      "kind": "event",
+      "payload": {
+        "betId": "2491229247",
+        "cashedOutQuote": 0.11,
+        "cashOutToken": "3RJ2aoWAL/f0DbQRiVCVaFHaoRgVvLo+ZDR6tmsYLxKO6Xl1OlWzUteyjMLgdQN0XRSU8mtioba5DqDF75tYiMipgFDaGAV7g87GBzauyq6ae3F60gCsqME1rA0H2uruIaNTu9CerV1Rd6WvWTx9kQrRY+oKMtX9Sd4ZPsCr5enCPAWUCGPk9yvNSj/a3tOZhDai+4BlJCLSWn/42ZqrIVjf+iWonLdrxkQZhw2YFEcp8EUSbHU/D9urG/7zNav+QdHBp4ehVzv+dUgSP+zuftqKeY3kQ7AwlHfHZRXg+l1TZetycnyT3zIftVwX4/QjgiFY3bT/279fLSAhdXXrG8gVnm27SUWRx2lNmB3M1Fk=",
+        "quote": 0.11
+      },
+      "meta": {
+        "origin": "sportsbook"
+      }
+    }
+  ]
+}
+
+

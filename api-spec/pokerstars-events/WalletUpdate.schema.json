@@ -1,0 +1,75 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "PSEventsWalletUpdated.schema.json",
+  "title": "PS Events - Wallet Updated Event",
+  "description": "Triggered when wallets get updated in PokerStars app",
+  "type": "object",
+  "properties": {
+    "kind": {
+      "$ref": "../envelope/envelope.schema.json#/$defs/kind-event"
+    },
+    "type": {
+      "const": "@@pokerstars/wallet_updated",
+      "description": "Defines the UID for this event"
+    },
+    "meta": {
+      "type": "object",
+      "properties": {
+        "origin": {
+          "$ref": "../envelope/envelope.schema.json#/$defs/origin-pokerstars"
+        }
+      }
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "enum": ["MAIN", "MAIN_EXPOSURE", "ARCADE_BONUS", "GAMES_BONUS", "VEGAS_BONUS", "BINGO_BONUS", "GAMING_BONUS", "GAMING_BONUS_TOTAL", "SPORTSBOOK_BONUS", "XG", "POKER", "BINGO", "CASINO", "CASINO_BONUS", "CASINO_FUN_BONUS", "CASINO_BONUS_CASH", "ITA", "EXCHANGE_BONUS_CASH", "SPORTSBOOK_BONUS_CASH", "SPORTSBOOK_BONUS_WAGERING", "UNKNOWN_VALUE", "TOTAL", "FROZEN", "VIRTUALSPORTS", "VIRTUALSPORTS_BONUS_CASH", "VIRTUALSPORTS_BONUS_WAGERING", "BOOST_TOKENS", "RT_BONUS", "FANTASY_BONUS", "MONEY_BACK_TOKENS"]
+        },
+        "details": {
+          "type": "object",
+          "properties": {
+            "amount": { "type": "number" },
+            "availabletobet": { "type": "number" },
+            "bonus": { "type": "number" },
+            "bonuses": { "type": "number" },
+            "deposits": { "type": "number" },
+            "real": { "type": "number" },
+            "winnings": { "type": "number" }
+          },
+          "required": ["amount"],
+          "additionalProperties": false
+        }
+      },
+      "required": ["name", "details"],
+      "additionalProperties": false
+    }
+  },
+  "required": ["kind", "type", "payload", "meta"],
+  "additionalProperties": false,
+  "examples": [
+    {
+      "type": "@@pokerstars/wallet_updated",
+      "kind": "event",
+      "payload": {
+        "details": {
+          "amount": "number",
+          "availabletobet": "number",
+          "bonus": "number",
+          "bonuses": "number",
+          "deposits": "number",
+          "real": "number",
+          "winnings": "number"
+        },
+        "walletName": "MAIN"
+      },
+      "meta": {
+        "origin": "sportsbook"
+      }
+    }
+  ]
+}
+
+
+
+

@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "SBKCommandsNavigate.schema.json",
+  "title": "SBK Commands - Navigate command",
+  "description": "Signal to instruct the subscriber (PokerStart host app) to perform a navigation to a given URL",
+  "type": "object",
+  "properties": {
+    "kind": {
+      "$ref": "../envelope/envelope.schema.json#/$defs/kind-command"
+    },
+    "type": {
+      "const": "@@sportsbook/navigate"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "url": { "type": "string" },
+        "target": { "enum": ["internal", "external"] }
+      },
+      "required": ["url", "target"]
+    }
+  },
+  "required": ["type", "payload", "kind"],
+  "additionalProperties": false,
+  "examples": [
+    {
+      "type": "@@sportsbook/navigate",
+      "kind": "command",
+      "payload": {
+        "url": "https://gordonmoody.org.uk/",
+        "target": "external"
+      },
+      "meta": {
+        "origin": "sportsbook"
+      }
+    }
+    
+  ]
+}
