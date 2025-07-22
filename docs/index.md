@@ -11,6 +11,4 @@
 - [host-events/WalletUpdate.schema](host-events/WalletUpdate.schema.md)
 
 ## Sportsbook-events
-- [sportsbook-events/BetCashedOut.schema](sportsbook-events/BetCashedOut.schema.md)
-- [sportsbook-events/BetPlaced.schema](sportsbook-events/BetPlaced.schema.md)
 - [sportsbook-events/Transaction.schema](sportsbook-events/Transaction.schema.md)
