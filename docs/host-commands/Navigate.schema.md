@@ -1,19 +1,19 @@
 
 
-# SBK Commands - Navigate command
+# Host Commands - Navigate command
 
-<p>Signal to instruct the subscriber (PokerStart host app) to perform a navigation to a given URL</p>
+<p>Signal to instruct the subscriber (Sportsbook embed app) to perform a navigation to a given URL</p>
 
 <table>
 <tbody>
-<tr><th>$id</th><td>SBKCommandsNavigate.schema.json</td></tr>
+<tr><th>$id</th><td>HostCommandsNavigate.schema.json</td></tr>
 <tr><th>$schema</th><td>http://json-schema.org/draft-07/schema#</td></tr>
 </tbody>
 </table>
 
 ## Properties
 
-<table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#kind">kind</a></td><td>String=command</td></tr><tr><td colspan="2"><a href="#type">type</a></td><td>undefined=@@sportsbook/navigate</td></tr><tr><td colspan="2"><a href="#payload">payload</a></td><td>Object</td></tr></tbody></table>
+<table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#kind">kind</a></td><td>String=command</td></tr><tr><td colspan="2"><a href="#type">type</a></td><td>undefined=@@host/navigate</td></tr><tr><td colspan="2"><a href="#payload">payload</a></td><td>Object</td></tr></tbody></table>
 
 
 ## Example
@@ -22,7 +22,7 @@
 
 ```
 {
-    "type": "@@sportsbook/navigate",
+    "type": "@@host/navigate",
     "kind": "command",
     "payload": {
         "url": "https://gordonmoody.org.uk/",
@@ -76,7 +76,7 @@
     </tr>
     <tr>
       <th>Const</th>
-      <td colspan="2">@@sportsbook/navigate</td>
+      <td colspan="2">@@host/navigate</td>
     </tr>
   </tbody>
 </table>
@@ -151,16 +151,16 @@
 ```
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "SBKCommandsNavigate.schema.json",
-    "title": "SBK Commands - Navigate command",
-    "description": "Signal to instruct the subscriber (PokerStart host app) to perform a navigation to a given URL",
+    "$id": "HostCommandsNavigate.schema.json",
+    "title": "Host Commands - Navigate command",
+    "description": "Signal to instruct the subscriber (Sportsbook embed app) to perform a navigation to a given URL",
     "type": "object",
     "properties": {
         "kind": {
             "$ref": "../envelope/envelope.schema.json#/$defs/kind-command"
         },
         "type": {
-            "const": "@@sportsbook/navigate"
+            "const": "@@host/navigate"
         },
         "payload": {
             "type": "object",
@@ -189,7 +189,7 @@
     "additionalProperties": false,
     "examples": [
         {
-            "type": "@@sportsbook/navigate",
+            "type": "@@host/navigate",
             "kind": "command",
             "payload": {
                 "url": "https://gordonmoody.org.uk/",

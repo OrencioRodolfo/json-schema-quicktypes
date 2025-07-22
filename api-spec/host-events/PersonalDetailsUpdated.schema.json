@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "PSEventsPersonalDetailsUpdated.schema.json",
-  "title": "PS Events - Perfornal Details Updated Event",
+  "$id": "HostEventsPersonalDetailsUpdated.schema.json",
+  "title": "Host Events - Perfornal Details Updated Event",
   "description": "Triggered when user's personal details get changed in My Account",
   "type": "object",
   "properties": {
@@ -9,14 +9,14 @@
       "$ref": "../envelope/envelope.schema.json#/$defs/kind-event"
     },
     "type": {
-      "const": "@@pokerstars/personal_details_updated",
+      "const": "@@host/personal_details_updated",
       "description": "Defines the UID for this event"
     },
     "meta": {
       "type": "object",
       "properties": {
         "origin": {
-          "$ref": "../envelope/envelope.schema.json#/$defs/origin-pokerstars"
+          "$ref": "../envelope/envelope.schema.json#/$defs/origin-host"
         }
       }
     },
@@ -45,7 +45,7 @@
   "additionalProperties": false,
   "examples": [
     {
-      "type": "@@pokerstars/personal_details_updated",
+      "type": "@@host/personal_details_updated",
       "kind": "event",
       "payload": {
         "language": {
@@ -55,11 +55,11 @@
     
       },
       "meta": {
-        "origin": "pokerstars"
+        "origin": "host"
       }
     },
     {
-      "type": "@@pokerstars/personal_details_updated",
+      "type": "@@host/personal_details_updated",
       "kind": "event",
       "payload": {
         "timezone": {
@@ -69,7 +69,7 @@
     
       },
       "meta": {
-        "origin": "pokerstars"
+        "origin": "host"
       }
     }
   ]

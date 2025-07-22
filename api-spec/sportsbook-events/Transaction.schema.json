@@ -1,15 +1,15 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "SBKCommandsLogin.schema.json",
-  "title": "SBK Commands - Login Command",
-  "description": "Triggered when a user cashes out a bet in My Bets",
+  "$id": "SBKEventsTransaction.schema.json",
+  "title": "SBK Events - Transaction Event",
+  "description": "Triggered when a user places a transaction like bet placed or bet cashed out successfuly",
   "type": "object",
   "properties": {
     "kind": {
-      "$ref": "../envelope/envelope.schema.json#/$defs/kind-command"
+      "$ref": "../envelope/envelope.schema.json#/$defs/kind-event"
     },
     "type": {
-      "const": "@@sportsbook/login",
+      "const": "@@sportsbook/transaction",
       "description": "Defines the UID for this event"
     },
     "meta": {
@@ -25,11 +25,13 @@
   "additionalProperties": false,
   "examples": [
     {
-      "type": "@@sportsbook/login",
-      "kind": "command",
+      "type": "@@sportsbook/transaction",
+      "kind": "event",
       "meta": {
         "origin": "sportsbook"
       }
     }
   ]
 }
+
+

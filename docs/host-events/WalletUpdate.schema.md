@@ -1,19 +1,19 @@
 
 
-# PS Events - Wallet Updated Event
+# Host Events - Wallet Updated Event
 
-<p>Triggered when wallets get updated in PokerStars app</p>
+<p>Triggered when wallets get updated in host app</p>
 
 <table>
 <tbody>
-<tr><th>$id</th><td>PSEventsWalletUpdated.schema.json</td></tr>
+<tr><th>$id</th><td>HostEventsWalletUpdated.schema.json</td></tr>
 <tr><th>$schema</th><td>http://json-schema.org/draft-07/schema#</td></tr>
 </tbody>
 </table>
 
 ## Properties
 
-<table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#kind">kind</a></td><td>String=event</td></tr><tr><td colspan="2"><a href="#type">type</a></td><td>undefined=@@pokerstars/wallet_updated</td></tr><tr><td colspan="2"><a href="#meta">meta</a></td><td>Object</td></tr><tr><td colspan="2"><a href="#payload">payload</a></td><td>Object</td></tr></tbody></table>
+<table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#kind">kind</a></td><td>String=event</td></tr><tr><td colspan="2"><a href="#type">type</a></td><td>undefined=@@host/wallet_updated</td></tr><tr><td colspan="2"><a href="#meta">meta</a></td><td>Object</td></tr><tr><td colspan="2"><a href="#payload">payload</a></td><td>Object</td></tr></tbody></table>
 
 
 ## Example
@@ -22,7 +22,7 @@
 
 ```
 {
-    "type": "@@pokerstars/wallet_updated",
+    "type": "@@host/wallet_updated",
     "kind": "event",
     "payload": {
         "details": {
@@ -88,7 +88,7 @@
     </tr>
     <tr>
       <th>Const</th>
-      <td colspan="2">@@pokerstars/wallet_updated</td>
+      <td colspan="2">@@host/wallet_updated</td>
     </tr>
   </tbody>
 </table>
@@ -111,18 +111,18 @@
 </table>
 
 ### Properties
-  <table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#metaorigin">origin</a></td><td>String=pokerstars</td></tr></tbody></table>
+  <table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#metaorigin">origin</a></td><td>String=host</td></tr></tbody></table>
 
 
 ### meta.origin
 
-  <p>Defined in <a href="../envelope/envelope.schema.html#origin-pokerstars">../envelope/envelope.schema.html#origin-pokerstars</a></p>
+  <p>Defined in <a href="../envelope/envelope.schema.html#origin-host">../envelope/envelope.schema.html#origin-host</a></p>
 
 <table class="jssd-property-table">
   <tbody>
     <tr>
       <th>Description</th>
-      <td colspan="2">Identifies &#x27;PokerStars&#x27; as the origin</td>
+      <td colspan="2">Identifies &#x27;Host app&#x27; as the origin</td>
     </tr>
     <tr><th>Type</th><td colspan="2">String</td></tr>
     <tr>
@@ -131,7 +131,7 @@
     </tr>
     <tr>
       <th>Const</th>
-      <td colspan="2">pokerstars</td>
+      <td colspan="2">host</td>
     </tr>
   </tbody>
 </table>
@@ -326,23 +326,23 @@
 ```
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "PSEventsWalletUpdated.schema.json",
-    "title": "PS Events - Wallet Updated Event",
-    "description": "Triggered when wallets get updated in PokerStars app",
+    "$id": "HostEventsWalletUpdated.schema.json",
+    "title": "Host Events - Wallet Updated Event",
+    "description": "Triggered when wallets get updated in host app",
     "type": "object",
     "properties": {
         "kind": {
             "$ref": "../envelope/envelope.schema.json#/$defs/kind-event"
         },
         "type": {
-            "const": "@@pokerstars/wallet_updated",
+            "const": "@@host/wallet_updated",
             "description": "Defines the UID for this event"
         },
         "meta": {
             "type": "object",
             "properties": {
                 "origin": {
-                    "$ref": "../envelope/envelope.schema.json#/$defs/origin-pokerstars"
+                    "$ref": "../envelope/envelope.schema.json#/$defs/origin-host"
                 }
             }
         },
@@ -430,7 +430,7 @@
     "additionalProperties": false,
     "examples": [
         {
-            "type": "@@pokerstars/wallet_updated",
+            "type": "@@host/wallet_updated",
             "kind": "event",
             "payload": {
                 "details": {

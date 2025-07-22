@@ -3,20 +3,20 @@ package io.quicktype;
 import java.io.IOException;
 
 /**
- * Identifies 'PokerStars' as the origin
+ * Identifies 'Host app' as the origin
  */
 public enum Origin {
-    POKERSTARS;
+    HOST;
 
     public String toValue() {
         switch (this) {
-            case POKERSTARS: return "pokerstars";
+            case HOST: return "host";
         }
         return null;
     }
 
     public static Origin forValue(String value) throws IOException {
-        if (value.equals("pokerstars")) return POKERSTARS;
+        if (value.equals("host")) return HOST;
         throw new IOException("Cannot deserialize Origin");
     }
 }

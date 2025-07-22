@@ -1,19 +1,19 @@
 
 
-# SBK Commands - Deposit Command
+# SBK Events - Transaction Event
 
-<p>Triggered when a user cashes out a bet in My Bets</p>
+<p>Triggered when a user places a transaction like bet placed or bet cashed out successfuly</p>
 
 <table>
 <tbody>
-<tr><th>$id</th><td>SBKCommandsDeposit.schema.json</td></tr>
+<tr><th>$id</th><td>SBKEventsTransaction.schema.json</td></tr>
 <tr><th>$schema</th><td>http://json-schema.org/draft-07/schema#</td></tr>
 </tbody>
 </table>
 
 ## Properties
 
-<table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#kind">kind</a></td><td>String=command</td></tr><tr><td colspan="2"><a href="#type">type</a></td><td>undefined=@@sportsbook/deposit</td></tr><tr><td colspan="2"><a href="#meta">meta</a></td><td>Object</td></tr></tbody></table>
+<table class="jssd-properties-table"><thead><tr><th colspan="2">Name</th><th>Type</th></tr></thead><tbody><tr><td colspan="2"><a href="#kind">kind</a></td><td>String=event</td></tr><tr><td colspan="2"><a href="#type">type</a></td><td>undefined=@@sportsbook/transaction</td></tr><tr><td colspan="2"><a href="#meta">meta</a></td><td>Object</td></tr></tbody></table>
 
 
 ## Example
@@ -22,8 +22,8 @@
 
 ```
 {
-    "type": "@@sportsbook/deposit",
-    "kind": "command",
+    "type": "@@sportsbook/transaction",
+    "kind": "event",
     "meta": {
         "origin": "sportsbook"
     }
@@ -37,13 +37,13 @@
 
 ## kind
 
-  <p>Defined in <a href="../envelope/envelope.schema.html#kind-command">../envelope/envelope.schema.html#kind-command</a></p>
+  <p>Defined in <a href="../envelope/envelope.schema.html#kind-event">../envelope/envelope.schema.html#kind-event</a></p>
 
 <table class="jssd-property-table">
   <tbody>
     <tr>
       <th>Description</th>
-      <td colspan="2">Identifies the message as being a Command</td>
+      <td colspan="2">Identifies the message as being an Event</td>
     </tr>
     <tr><th>Type</th><td colspan="2">String</td></tr>
     <tr>
@@ -52,7 +52,7 @@
     </tr>
     <tr>
       <th>Const</th>
-      <td colspan="2">command</td>
+      <td colspan="2">event</td>
     </tr>
   </tbody>
 </table>
@@ -76,7 +76,7 @@
     </tr>
     <tr>
       <th>Const</th>
-      <td colspan="2">@@sportsbook/deposit</td>
+      <td colspan="2">@@sportsbook/transaction</td>
     </tr>
   </tbody>
 </table>
@@ -139,16 +139,16 @@
 ```
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "SBKCommandsDeposit.schema.json",
-    "title": "SBK Commands - Deposit Command",
-    "description": "Triggered when a user cashes out a bet in My Bets",
+    "$id": "SBKEventsTransaction.schema.json",
+    "title": "SBK Events - Transaction Event",
+    "description": "Triggered when a user places a transaction like bet placed or bet cashed out successfuly",
     "type": "object",
     "properties": {
         "kind": {
-            "$ref": "../envelope/envelope.schema.json#/$defs/kind-command"
+            "$ref": "../envelope/envelope.schema.json#/$defs/kind-event"
         },
         "type": {
-            "const": "@@sportsbook/deposit",
+            "const": "@@sportsbook/transaction",
             "description": "Defines the UID for this event"
         },
         "meta": {
@@ -168,8 +168,8 @@
     "additionalProperties": false,
     "examples": [
         {
-            "type": "@@sportsbook/deposit",
-            "kind": "command",
+            "type": "@@sportsbook/transaction",
+            "kind": "event",
             "meta": {
                 "origin": "sportsbook"
             }

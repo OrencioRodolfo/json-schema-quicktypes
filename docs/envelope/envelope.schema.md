@@ -2,7 +2,7 @@
 
 # Message Envelope
 
-<p>Envelope for all messages being exchanged, whether they are Events or Commands or produced by PokerStars host or Sportsbook embed apps</p>
+<p>Envelope for all messages being exchanged, whether they are Events or Commands or produced by host or Sportsbook embed apps</p>
 
 <table>
 <tbody>
@@ -44,7 +44,7 @@
 
 ```
 {
-    "type": "@@pokerstars/wallet_updated",
+    "type": "@@host/wallet_updated",
     "kind": "event",
     "payload": {
         "details": {
@@ -171,7 +171,7 @@
   <tbody>
     <tr>
       <th>Description</th>
-      <td colspan="2">Identifies by who is the message being produced (either Sportsbook app or the PokerStars host app)</td>
+      <td colspan="2">Identifies by who is the message being produced (either Sportsbook app or the host app)</td>
     </tr>
     <tr><th>Type</th><td colspan="2">String</td></tr>
     <tr>
@@ -180,7 +180,7 @@
     </tr>
     <tr>
       <th>Enum</th>
-      <td colspan="2"><ul><li>sportsbook</li><li>pokerstars</li></ul></td>
+      <td colspan="2"><ul><li>sportsbook</li><li>host</li></ul></td>
     </tr>
   </tbody>
 </table>
@@ -202,7 +202,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "envelope/envelope.schema.json",
     "title": "Message Envelope",
-    "description": "Envelope for all messages being exchanged, whether they are Events or Commands or produced by PokerStars host or Sportsbook embed apps",
+    "description": "Envelope for all messages being exchanged, whether they are Events or Commands or produced by host or Sportsbook embed apps",
     "type": "object",
     "$defs": {
         "kind-event": {
@@ -220,10 +220,10 @@
             "const": "sportsbook",
             "description": "Identifies 'Sportsbook' as the origin"
         },
-        "origin-pokerstars": {
+        "origin-host": {
             "type": "string",
-            "const": "pokerstars",
-            "description": "Identifies 'PokerStars' as the origin"
+            "const": "host",
+            "description": "Identifies 'Host app' as the origin"
         }
     },
     "properties": {
@@ -249,9 +249,9 @@
                     "type": "string",
                     "enum": [
                         "sportsbook",
-                        "pokerstars"
+                        "host"
                     ],
-                    "description": "Identifies by who is the message being produced (either Sportsbook app or the PokerStars host app)"
+                    "description": "Identifies by who is the message being produced (either Sportsbook app or the host app)"
                 }
             }
         }
@@ -279,7 +279,7 @@
             }
         },
         {
-            "type": "@@pokerstars/wallet_updated",
+            "type": "@@host/wallet_updated",
             "kind": "event",
             "payload": {
                 "details": {

@@ -1,22 +1,22 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "PSEventsWalletUpdated.schema.json",
-  "title": "PS Events - Wallet Updated Event",
-  "description": "Triggered when wallets get updated in PokerStars app",
+  "$id": "HostEventsWalletUpdated.schema.json",
+  "title": "Host Events - Wallet Updated Event",
+  "description": "Triggered when wallets get updated in host app",
   "type": "object",
   "properties": {
     "kind": {
       "$ref": "../envelope/envelope.schema.json#/$defs/kind-event"
     },
     "type": {
-      "const": "@@pokerstars/wallet_updated",
+      "const": "@@host/wallet_updated",
       "description": "Defines the UID for this event"
     },
     "meta": {
       "type": "object",
       "properties": {
         "origin": {
-          "$ref": "../envelope/envelope.schema.json#/$defs/origin-pokerstars"
+          "$ref": "../envelope/envelope.schema.json#/$defs/origin-host"
         }
       }
     },
@@ -49,7 +49,7 @@
   "additionalProperties": false,
   "examples": [
     {
-      "type": "@@pokerstars/wallet_updated",
+      "type": "@@host/wallet_updated",
       "kind": "event",
       "payload": {
         "details": {
